@@ -19,8 +19,8 @@ if (!file.exists(dataDir)) {
 }
 
 #Labels metadata
-featureNames <- read.table("UCI HAR Dataset/features.txt")
-activityLabels <- read.table("UCI HAR Dataset/activity_labels.txt", header = FALSE)
+featureNames <- read.table(paste(sep = "", dataDir, "/UCI HAR Dataset/features.txt"))
+activityLabels <- read.table(paste(sep = "", dataDir, "/UCI HAR Dataset/activity_labels.txt"), header = FALSE)
 
 # train data
 x_train <- read.table(paste(sep = "", dataDir, "/UCI HAR Dataset/train/X_train.txt"))
@@ -38,10 +38,10 @@ x_data <- rbind(x_train, x_test)
 y_data <- rbind(y_train, y_test)
 s_data <- rbind(s_train, s_test)
 
-colnames(features) <- t(featureNames[2])
-colnames(activity) <- "Activity"
-colnames(subject) <- "Subject"
-completeData <- cbind(features,activity,subject)
+colnames(x_data) <- t(featureNames[2])
+colnames(y_data) <- "Activity"
+colnames(s_data) <- "Subject"
+completeData <- cbind(x_data,y_data,s_data)
 
 #Load feature & activity info
 
